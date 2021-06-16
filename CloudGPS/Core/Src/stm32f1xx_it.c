@@ -42,6 +42,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
+uint16_t blinkTimer = 0;
 
 /* USER CODE END PV */
 
@@ -184,7 +185,7 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
-
+  blinkTimer++; if(blinkTimer > 150) { blinkTimer = 0; HAL_GPIO_TogglePin(BLINK_GPIO_Port, BLINK_Pin); }
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */
